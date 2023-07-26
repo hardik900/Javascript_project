@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .button-div{
+        margin: auto;
+        background-color: rgb(127, 227, 255);
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        border-radius: 10px;
+        padding: 5px 0px;
+    }
+
+    .button-div button{
+        margin: 5px 10px;
+        padding: 8px 25px;
+        border-radius: 15px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .main-box{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+    }
+    .box{
+        height: 400px;
+        width: 25%;
+        background-color: rgb(196, 196, 187);
+        margin: 10px;
+        overflow-x: auto;
+        border-radius: 20px;
+        padding: 10px;
+    }
+    @media screen and (max-width:768px) {
+        .button-div{
+            width: 90%;
+        }
+
+        .main-box{
+            flex-direction: column;
+        }
+        .box{
+            width: 90%;
+
+        }
+    }
+</style>
+<body>
+    <div class="button-div">
+        <!-- <input type="checkbox" id="check_thrill"> -->
+        <button onclick="thrill()"> Thrill</button>
+        <!-- <input type="checkbox" id="check_education"> -->
+        <button onclick="Education()"> Education</button>
+        <!-- <input type="checkbox" id="check_motivational"> -->
+        <button onclick="Motivational()"> Motivational</button>
+    </div>
+    <div class="main-box">
+        <div id="thril" class="box"></div>
+        <div id="Education" class="box"></div>
+        <div id="Motivational" class="box"></div>
+    </div>
+    <div class="check">
+        <p id="demo"></p>
+    </div>
+    <script>
+        const movies = [
+            { name: "3 Idiot", type: "educational" },
+            { name: "Joker", type: "thrill" },
+            { name: "Batman", type: "thrill" },
+            { name: "Kota factory", type: "educational" },
+            { name: "Family Man", type: "thrill" },
+            { name: "Cubicals", type: "Motivational" },
+            { name: "Asur", type: "educational" },
+            { name: "Lakshay", type: "Motivational" },
+            { name: "Scam 1996", type: "Educational" },
+            { name: "Avenger", type: "thrill" },
+            { name: "Super 30", type: "educational" },
+            { name: "Life of Pie", type: "thrill" },
+            { name: "Chhichhore", type: "Motivational" },
+            { name: "Mission Mangal", type: "educational" },
+            { name: "Thor", type: "thrill" }
+        ];
+
+        function thrill(){
+            console.log(movies)
+            var values = movies.filter((data)=>{
+                if(data.type == "thrill"){
+                    return data.name;
+                }
+            })
+            console.log(values,"thrill")
+            document.getElementById('thril').innerHTML = values.map((thrillMovies)=>{
+                return `<p>${thrillMovies.name}</p>`;
+            })
+        }
+
+        function Education(){
+            console.log(movies)
+            const values = movies.filter((data)=>{
+                if(data.type == "Educational" || data.type == "educational" ){
+                    return data.name;
+                }
+            })
+            console.log(values,"Education")
+            document.getElementById('Education').innerHTML = values.map((EducationMovies)=>{
+                return EducationMovies.name;
+            })
+        }
+
+        function Motivational(){
+            console.log(movies)
+            const values = movies.filter((data)=>{
+                if(data.type == "Motivational"){
+                    return data.name;
+                }
+            })
+            console.log(values,"Motivational")
+            document.getElementById('Motivational').innerHTML = values.map((MotivationalMovies)=>{
+                return MotivationalMovies.name;
+            })
+        }
+    </script>
+</body>
+
+</html>

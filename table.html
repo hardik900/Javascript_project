@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="a" onclick="hello1('A')" value="A"/>
+    <input id="b" onclick="hello1('B')" value="B">
+    <input id="c" onclick="hello1('C')" value="C">
+    <div id="x"></div>
+    <div id="y"></div>
+    <div id="z"></div>
+    <div id="total" ></div>
+    <script>
+        var u=[];
+        function hello1(aa){
+            u=u+aa
+            console.log(u)
+            //var k = document.getElementById('a').value;
+            //var q = document.getElementById('b').value;
+            //var r = document.getElementById('c').value;
+            document.getElementById('x').innerHTML = u;
+            if(u.length>3){
+                document.getElementById('x').innerHTML = '';
+            }
+            //document.getElementById('y').innerHTML = u;
+            //document.getElementById('z').innerHTML = u; 
+        }
+        //function hello2() {
+        //}
+        //function hello3() {
+        //    total()
+        //}
+
+        //function total(){
+        //    total.innerHTML= k+q+r;
+        //}
+    </script>
+</body>
+
+</html>

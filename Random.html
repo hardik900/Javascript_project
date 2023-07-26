@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0px;
+            padding: 0px;
+        }
+        .Random-container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: aqua;
+            height: 100vh;
+        }
+
+        .Random{
+            display: flex;
+            height: 300px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(138, 138, 201);
+            width: 300px;
+            border-radius: 20px;
+            border: 2px solid red;
+        }
+
+        .button{
+            margin: 10px ;
+            
+        }
+
+        .button button{
+            height: 120px;
+            width: 120px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        .button1{
+            background-color: greenyellow;
+        }
+
+        .button2{
+            background-color: rgb(66, 118, 222);
+        }
+
+        .button3{
+            background-color: rgb(191, 141, 213);
+        }
+
+        .button1:hover{
+            background-color: rgb(145, 197, 68);
+        }
+
+        .button2:hover{
+            background-color: rgb(140, 168, 223);
+        }
+
+        .button3:hover{
+            background-color: rgb(202, 161, 219);
+        }
+
+        .h2{
+            margin-bottom: 7px;
+        }
+
+        .user1{
+            background-color: burlywood;
+            height: 300px;
+            width: 300px;
+            display: none;
+        }
+
+        .user2{
+            background-color: cadetblue;
+            height: 300px;
+            width: 300px;
+            display: none;
+        }
+        .win_loss_image{
+            display: flex;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="Random-container ">
+        <div class="button col-12 col-md-10">
+            <audio id="audio" src="audio.wav"></audio>
+            <button onclick="user1()" class="button1">User1</button>
+            <button onclick="user2()" class="button2">User2</button>
+            <button onclick="winner()" class="button3">Result</button>
+        </div>
+        <h2 class="h2">Display screen</h2>
+        <!-- <div class="win_loss_image"> -->
+            <!-- <div class="user1" id="users1">
+                <img src="win.gif" alt="">
+            </div> -->
+            <div class='Random'>
+                <p id="demo"></p> <br>
+                <p id="demo1"></p>
+                <h2 id="winner">____is a winner</h2>
+            </div>
+        <!-- <div class="user2">
+            <img src="throw_flower.gif" id="users3" alt="">
+        </div> -->
+        <!-- </div> -->
+    </div>
+    <script>
+        var audio = document.getElementById("audio");
+        var users1 = [];
+        function user1(){
+            users1.length = 0;
+            audio.play()
+            for(i=0; i<=2; i++){
+                let x = Math.floor(Math.random()*100);
+                users1.push(x)   
+            }
+            //console.log(users1,"user1")
+            function mapData(q){
+                return q
+            }
+            document.getElementById('demo').innerHTML = users1.map(mapData)
+        }
+        
+
+        var users2 = [];
+        function user2(){
+            users2.length = 0;
+            audio.play()
+            for(i=0; i<=2; i++){
+                let y = Math.floor(Math.random()*100);
+                users2.push(y)
+            }
+            function mapData(q){
+                return q;
+            }
+            document.getElementById('demo1').innerHTML = users2.map(mapData)
+        }
+
+        function winner(){
+            console.log(users1, "users1")
+            console.log(users2, "users2")
+            audio.play()
+            const users1_data = users1.reduce(function(w,m){
+                return w+m;
+            })
+            console.log(users1_data,"users1_data")
+
+            const users2_data = users2.reduce(function(w,m){
+                return w+m;
+            })
+            console.log(users2_data,"users2_data")
+            
+            if(users1_data > users2_data){
+                document.getElementById('winner').innerHTML= "user 1 is a winner";
+                //document.getElementById("users1").style.display = "block";
+            }
+            else if(users1_data < users2_data){
+                document.getElementById('winner').innerHTML= "user 2 is a winner";
+                //document.getElementById("users3").style.display = "block"
+            }
+            else if(users1_data == users2_data){
+                document.getElementById('winner').innerHTML= "Match will be draw";
+            }
+            else{
+                document.getElementById('winner').innerHTML= "Something is wrong";
+            }
+        }
+    </script>
+</body>
+</html>

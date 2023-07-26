@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0px;
+        }
+
+        .main{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .button-div{
+            /*height: 200px;*/
+            background-color: aqua;
+            width: 40%;
+            display: flex;
+            /*flex-direction: column;*/
+            justify-content: center;
+            border-radius: 0px 0px 20px 20px;
+            align-items: center;
+            /*margin: auto;*/
+        }
+
+        .input-div{
+            margin: 15px 10px;
+        }
+
+        .check{
+            width: 25%;
+            background-color: blanchedalmond;
+            height: 400px;
+            border-radius: 20px;
+            margin: 20px ;
+            overflow:scroll ;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="button-div">
+            <div class="input-div">
+                <input  onclick="filterData()" type="checkbox" id="check_thrill">
+                <label for="check_thrill" > Thrill</label>
+            </div>
+            <div class="input-div">
+                <input type="checkbox" onclick="filterData()" id="check_education">
+                <label for="check_education" > Education</label>
+            </div>
+            <div class="input-div">
+                <input type="checkbox" onclick="filterData()" id="check_motivational"> 
+                <label for="check_motivational">Motivational</label>
+            </div>
+        </div>
+        <!-- <button >show data</button> -->
+        <div class="check">
+            <p id="demo"></p>
+        </div>
+    </div>
+
+
+    <script>
+        const movies = [
+            { name: "3 Idiot", type: "educational" },
+            { name: "Joker", type: "thrill" },
+            { name: "Batman", type: "thrill" },
+            { name: "Kota factory", type: "educational" },
+            { name: "Family Man", type: "thrill" },
+            { name: "Cubicals", type: "Motivational" },
+            { name: "Asur", type: "educational" },
+            { name: "Lakshay", type: "Motivational" },
+            { name: "Scam 1996", type: "Educational" },
+            { name: "Avenger", type: "thrill" },
+            { name: "Super 30", type: "educational" },
+            { name: "Life of Pie", type: "thrill" },
+            { name: "Chhichhore", type: "Motivational" },
+            { name: "Mission Mangal", type: "educational" },
+            { name: "Thor", type: "thrill" }
+        ];
+
+        function filterData(){
+            let check_thrill = document.getElementById('check_thrill');
+            let check_education = document.getElementById('check_education');
+            let check_motivational = document.getElementById('check_motivational');
+            
+            /* filter Data*/
+            var thrillData = movies.filter((data)=>{
+                if(data.type == "thrill"){
+                    return data.name;
+                }
+            })
+
+            var educationData = movies.filter((data1)=>{
+                if(data1.type == "Educational" || data1.type == "educational" ){
+                    return data1.name;
+                }
+            })
+
+            var motivationData = movies.filter((data2)=>{
+                if(data2.type == "Motivational"){
+                    return data2.name;
+                }
+            })
+
+            /*Conditions */
+            
+            if(check_thrill.checked){
+                console.log(thrillData, "thrillData")
+                let pp = thrillData.map((thrillMovies)=>{
+                    return `<p>${thrillMovies.name}</p>`
+                })
+                document.getElementById('demo').innerHTML = pp.join("")
+
+            }
+
+            if(check_education.checked){
+                console.log(educationData, "educationData")
+                //console.log(pp,"pp")
+                let pp = educationData.map((educationMovies)=>{
+                    return `<p>${educationMovies.name}</p>`;
+                })
+                document.getElementById('demo').innerHTML = pp.join('')
+            }
+
+            if(check_motivational.checked){
+                console.log(motivationData, "motivationData")
+                let pp = motivationData.map((MotivationalMovies)=>{
+                    return `<p>${MotivationalMovies.name}</p>`;
+                })
+                document.getElementById('demo').innerHTML = pp.join('')
+            }
+
+            if(check_thrill.checked && check_education.checked){
+                let mergeTE = [...thrillData, ...educationData]
+                let kk = mergeTE.map((mergeTEData)=>{
+                    return `<p>${mergeTEData.name}</p>`;
+                })
+                document.getElementById('demo').innerHTML = kk.join("")
+            }
+
+            if(check_education.checked && check_motivational.checked){
+                let mergeEM = [...educationData, ...motivationData]
+                document.getElementById('demo').innerHTML = mergeEM.map((mergeEMData)=>{
+                    return `<p>${mergeEMData.name}</p>`;
+                })
+            }
+
+            if(check_education.checked && check_thrill.checked ){
+                let mergeET = [...educationData, ...thrillData]
+                document.getElementById('demo').innerHTML = mergeET.map((mergeETData)=>{
+                    return `<p>${mergeETData.name}</p>`;
+                })
+            }
+
+            if(check_motivational.checked && check_thrill.checked ){
+                let mergeMT = [...motivationData, ...thrillData]
+                document.getElementById('demo').innerHTML = mergeMT.map((mergeMTData)=>{
+                    return `<p>${mergeMTData.name}</p>`;
+                })
+            }
+
+            if(check_thrill.checked && check_motivational.checked && check_education.checked){
+                let ll = [ ...educationData,...thrillData, ...motivationData,]
+                document.getElementById('demo').innerHTML = ll.map((llm)=>{
+                    return `<p>${llm.name}</p>`;
+                    //return llm.name;
+                })
+                //console.log(ll,"mergeTEM")
+            }
+
+
+
+                //var motivationData = movies.filter((data)=>{
+                //let mergeArr = [...thrillData,...educationData, ...motivationData]
+                //console.log(mergeArr, "thrill, education")
+        //})
+    }
+    </script>
+</body>
+</html>
